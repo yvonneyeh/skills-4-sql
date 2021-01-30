@@ -23,3 +23,32 @@ The result set should be:
 SELECT email
 FROM customers
 ORDER BY email;
+
+
+==========
+2
+
+-----
+
+Jane Doe has requested receipts for all of her past cupcake orders.
+To look up the receipts, we need to know which orders Jane placed.
+ 
+Write a query that lists the order ids for all orders placed by customers with
+the first name Jane and last name Doe. Use a SUBQUERY to do this, not a join.
+
+The result set should be:
+ id 
+----
+  1
+  3
+  4
+  6
+  8
+(5 rows)
+
+
+-----
+
+
+SELECT id FROM orders WHERE customer_id = (SELECT id FROM customers WHERE fname = 'Jane' AND lname = 'Doe')
+;
