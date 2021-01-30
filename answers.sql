@@ -52,3 +52,26 @@ The result set should be:
 
 SELECT id FROM orders WHERE customer_id = (SELECT id FROM customers WHERE fname = 'Jane' AND lname = 'Doe')
 ;
+
+
+==========
+3
+
+-----
+
+Balloonicorn needs to schedule her employees for the next week
+based on how many cupcakes have been ordered and not yet processed.
+ 
+Write a query that gets the total number of cupcakes from unprocessed orders.
+
+The result set should be:
+ sum 
+-----
+ 209
+ (1 row)
+ 
+
+-----
+
+
+SELECT SUM(num_cupcakes) FROM orders WHERE processed = 'FALSE';
