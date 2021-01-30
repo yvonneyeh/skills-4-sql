@@ -108,3 +108,29 @@ The result set should be:
 
 
 SELECT c.name, SUM(o.num_cupcakes) AS sum FROM cupcakes AS c LEFT JOIN orders AS o ON (c.id = o.cupcake_id) GROUP BY name ORDER BY name;
+
+
+==========
+5
+
+-----
+
+Marketing now wants to send emails to all of our top customers
+thanking them for their business.
+ 
+Write a query that gets the email address of all customers who have ordered
+more than 100 cupcakes total (from both processed and unprocessed orders),
+in reverse alphabetical order.
+
+The result set should be:
+        email        
+---------------------
+ jdoe@gmail.com
+ bpersonne@yahoo.com
+(2 rows)
+
+
+-----
+
+
+SELECT c.email FROM customers AS c JOIN orders AS o ON (c.id = o.customer_id) WHERE o.num_cupcakes >= 100 ORDER BY email DESC;
