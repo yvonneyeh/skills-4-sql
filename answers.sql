@@ -75,3 +75,36 @@ The result set should be:
 
 
 SELECT SUM(num_cupcakes) FROM orders WHERE processed = 'FALSE';
+
+
+==========
+4
+
+-----
+
+Balloonicorn is working on her inventory and wants to know how many
+cupcakes have been ordered of each type.
+ 
+Write a query that shows the name of each cupcake and the sum of cupcakes
+ordered for that cupcake type (for both processed and unprocessed orders),
+sorted in ascending alphabetical order of cupcake name.
+
+The report should show all cupcake types, even if they have not been ordered
+at all.
+
+The result set should be:
+    name     | sum 
+-------------+-----
+ carrot cake |  10
+ chocolate   |    
+ funfetti    |  13
+ raspberry   |  25
+ red velvet  | 215
+ vanilla     | 202
+(6 rows)
+
+
+-----
+
+
+SELECT c.name, SUM(o.num_cupcakes) AS sum FROM cupcakes AS c LEFT JOIN orders AS o ON (c.id = o.cupcake_id) GROUP BY name ORDER BY name;
