@@ -134,3 +134,30 @@ The result set should be:
 
 
 SELECT c.email FROM customers AS c JOIN orders AS o ON (c.id = o.customer_id) WHERE o.num_cupcakes >= 100 ORDER BY email DESC;
+
+
+==========
+6
+
+-----
+
+Uh oh -- it looks like there might have been an issue with a recent
+batch of funfetti cupcakes (someone might have ordered non-edible sparkles
+to put in the icing instead of edible ones). We need to let our customers
+who have processed orders of funfetti cupcakes know about the issue.
+ 
+Write a query that selects the first name, last name and email address of
+customers who have processed orders of funfetti cupcakes. Even if a customer
+has multiple outstanding orders of funfetti, their email should only appear once.
+
+The result set should be:
+ fname |  lname   |        email        
+-------+----------+---------------------
+ Bob   | Personne | bpersonne@yahoo.com
+(1 row)
+
+
+-----
+
+
+SELECT DISTINCT fname, lname, email FROM customers AS c JOIN orders AS o ON (c.id = o.customer_id) WHERE o.cupcake_id = (SELECT id FROM cupcakes WHERE name = 'funfetti') AND processed = true;
